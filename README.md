@@ -1,7 +1,7 @@
 TurnLayout
 ===========
 
-TurnLayout is a view that able to show the back side.
+TurnLayout is a view that can turn to show the back side.
 
 
 ## License
