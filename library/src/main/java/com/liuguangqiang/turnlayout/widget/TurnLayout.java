@@ -1,4 +1,4 @@
-package com.liuguangqiang.turnlayout;
+package com.liuguangqiang.turnlayout.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -15,14 +15,14 @@ import com.facebook.rebound.SpringSystem;
  */
 public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
-    private static final String TAG = "ReversalLayout";
+    private static final String TAG = "TurnLayout";
     private static final int CAMERA_DISTANCE = 8100;
 
     private View front;
     private View back;
 
+    private OnTurnChangedListener onTurnChangedListener;
     private boolean isFront = true;
-
     private SpringSystem springSystem;
     private Spring spring;
 
@@ -40,12 +40,20 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
         setOnClickListener(this);
     }
 
+    public boolean isFront() {
+        return isFront;
+    }
+
+    public void setOnTurnChangedListener(OnTurnChangedListener listener) {
+        this.onTurnChangedListener = listener;
+    }
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
         if (getChildCount() != 2) {
-            throw new IllegalStateException("ReversalLayout must contains only two direct child.");
+            throw new IllegalStateException("TurnLayout must contains only two direct child.");
         }
 
         front = getChildAt(1);
@@ -80,9 +88,11 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
                 if (isFront && value > 90) {
                     front.setVisibility(View.GONE);
                     isFront = false;
+                    if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
                 } else if (!isFront && value < 90) {
                     front.setVisibility(View.VISIBLE);
                     isFront = true;
+                    if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
                 }
             }
 
@@ -94,7 +104,10 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
         int endValue = showBack ? 180 : 0;
         spring.setEndValue(endValue);
-        isFront = !isFront;
+    }
+
+    public interface OnTurnChangedListener {
+        void onChanged(boolean isFront);
     }
 
 }
