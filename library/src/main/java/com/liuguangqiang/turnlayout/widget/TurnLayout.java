@@ -11,12 +11,29 @@ import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 
 /**
+ * TurnLayout is a view that can turn to show the back side.
+ * <p/>
  * Created by Eric on 15/4/15.
  */
 public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
+
     private static final String TAG = "TurnLayout";
+
     private static final int CAMERA_DISTANCE = 8100;
+    private static final int ORIGINAL_ROTATION = 0;
+    private static final int END_ROTATION = 180;
+    private static final int ANCHOR = 90;
+
+    private static final double DEFAULT_TENSION = 32;
+    private static final double DEFAULT_FRICTION = 8;
+
+    private double mTension = DEFAULT_TENSION;
+    private double mFriction = DEFAULT_FRICTION;
+
+    private int mOrientation = HORIZONTAL;
 
     private View front;
     private View back;
@@ -44,6 +61,18 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
         return isFront;
     }
 
+    public void setOrientation(int orientation) {
+        if (mOrientation != orientation) {
+            mOrientation = orientation;
+            requestLayout();
+        }
+    }
+
+    public void setTensionAndFriction(double tension, double friction) {
+        mTension = tension;
+        mFriction = friction;
+    }
+
     public void setOnTurnChangedListener(OnTurnChangedListener listener) {
         this.onTurnChangedListener = listener;
     }
@@ -58,13 +87,31 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
         front = getChildAt(1);
         back = getChildAt(0);
-        back.setRotationY(180);
+
+        back.setRotationY(ORIGINAL_ROTATION);
+        back.setRotationX(ORIGINAL_ROTATION);
+        setMRotation(back, END_ROTATION);
     }
 
     @Override
     public void onClick(View v) {
         if (v instanceof TurnLayout) {
             overturn();
+        }
+    }
+
+    private void setMRotation(float rotation) {
+        setMRotation(this, rotation);
+    }
+
+    private void setMRotation(View view, float rotation) {
+        switch (mOrientation) {
+            case HORIZONTAL:
+                view.setRotationY(rotation);
+                break;
+            case VERTICAL:
+                view.setRotationX(rotation);
+                break;
         }
     }
 
@@ -76,33 +123,33 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
         if (springSystem == null) {
             springSystem = SpringSystem.create();
             spring = springSystem.createSpring();
-            spring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(32, 8));
+            spring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(mTension, mFriction));
+            spring.addListener(new SimpleSpringListener() {
+
+                @Override
+                public void onSpringUpdate(Spring spring) {
+                    float value = (float) spring.getCurrentValue();
+                    setMRotation(value);
+
+                    if (isFront && value > ANCHOR) {
+                        front.setVisibility(View.GONE);
+                        isFront = false;
+                        if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
+                    } else if (!isFront && value < ANCHOR) {
+                        front.setVisibility(View.VISIBLE);
+                        isFront = true;
+                        if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
+                    }
+                }
+
+                @Override
+                public void onSpringEndStateChange(Spring spring) {
+                    super.onSpringEndStateChange(spring);
+                }
+            });
         }
 
-        spring.addListener(new SimpleSpringListener() {
-
-            @Override
-            public void onSpringUpdate(Spring spring) {
-                float value = (float) spring.getCurrentValue();
-                setRotationY(value);
-                if (isFront && value > 90) {
-                    front.setVisibility(View.GONE);
-                    isFront = false;
-                    if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
-                } else if (!isFront && value < 90) {
-                    front.setVisibility(View.VISIBLE);
-                    isFront = true;
-                    if (onTurnChangedListener != null) onTurnChangedListener.onChanged(isFront);
-                }
-            }
-
-            @Override
-            public void onSpringEndStateChange(Spring spring) {
-                super.onSpringEndStateChange(spring);
-            }
-        });
-
-        int endValue = showBack ? 180 : 0;
+        int endValue = showBack ? END_ROTATION : ORIGINAL_ROTATION;
         spring.setEndValue(endValue);
     }
 
