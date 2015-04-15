@@ -6,6 +6,10 @@ This library is using [Rebound](http://facebook.github.io/rebound/) to drive ani
 
 ##Screenshots
 
+![image](images/HORIZONTAL.gif)
+
+![image](images/VERTICAL.gif)
+
 ##Sample Download
 
 ##Usage
