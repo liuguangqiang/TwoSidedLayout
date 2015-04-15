@@ -11,6 +11,9 @@ This library is using [Rebound](http://facebook.github.io/rebound/) to drive ani
 ![image](images/VERTICAL.gif)
 
 ##Sample Download
+[Sample Download](https://github.com/liuguangqiang/TurnLayout/raw/master/images/sample.apk)
+
+![image](images/download.png)
 
 ##Usage
 
