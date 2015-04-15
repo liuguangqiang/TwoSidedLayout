@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="main_yellow_color">#fc9634</color>
+
+    <color name="blue_n">#2ddca3</color>
+    <color name="blue_s">#2ddca3</color>
+    <color name="green">#00855e</color>
+
+    <color name="white">#FFFFFF</color>
+
+
+</resources>
