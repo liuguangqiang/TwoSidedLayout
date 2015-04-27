@@ -59,6 +59,12 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
     private SpringSystem springSystem;
     private Spring spring;
 
+    private boolean turnable = true;
+
+    public void setTurnable(boolean enable) {
+        this.turnable = enable;
+    }
+
     public TurnLayout(Context context) {
         this(context, null);
     }
@@ -111,7 +117,7 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v instanceof TurnLayout) {
+        if (turnable && v instanceof TurnLayout) {
             overturn();
         }
     }

@@ -2,8 +2,6 @@ package com.liuguangqiang.turnlayout.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.widget.LinearLayout;
 
 import com.liuguangqiang.turnlayout.widget.TurnLayout;
 
@@ -23,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
         turnLayout = (TurnLayout) findViewById(R.id.turnlayout);
         turnLayout.setOrientation(TurnLayout.HORIZONTAL);
         turnLayout.setTensionAndFriction(30, 15);
+        turnLayout.setTurnable(true);
     }
 
 }
