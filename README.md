@@ -30,7 +30,7 @@ dependencies {
 ```
 
 ### Layout
-TurnLayout must contains only two direct child.
+TurnLayout must contains only two direct children.
 
 ```
 <com.liuguangqiang.turnlayout.widget.TurnLayout
