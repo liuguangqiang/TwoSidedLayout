@@ -4,27 +4,22 @@ TurnLayout
 TurnLayout is a view that can turn to show the back side.
 This library is using [Rebound](http://facebook.github.io/rebound/) to drive animations.
 
-##Screenshots
+## Screenshots
 
 ![image](images/HORIZONTAL.gif)
 
 ![image](images/VERTICAL.gif)
 
-##Sample Download
-[Sample Download](https://github.com/liuguangqiang/TurnLayout/raw/master/images/sample.apk)
-
-![image](images/download.png)
-
 ##Usage
 
-###Gradle
+### Gradle
 ```
 dependencies {
    	compile 'com.github.liuguangqiang.turnlayout:library:0.1.0'
 }
 ```
 
-###Maven
+### Maven
 ```
 <dependency>
   	<groupId>com.github.liuguangqiang.turnlayout</groupId>
@@ -34,7 +29,7 @@ dependencies {
 </dependency>
 ```
 
-###Layout
+### Layout
 TurnLayout must contains only two direct child.
 
 ```
@@ -55,14 +50,14 @@ TurnLayout must contains only two direct child.
     </com.liuguangqiang.turnlayout.widget.TurnLayout>
 ```
 
-###Orientation
+### Orientation
 
 ```
 HORIZONTAL
 
 VERTICAL
 ```
-###Tension and Friction
+### Tension and Friction
 TurnLayout is using [Rebound](http://facebook.github.io/rebound/) to drive animations.
 Change tension and friction will influence the animation effects in Rebound. So TurnLayout create a method to change these.
 
