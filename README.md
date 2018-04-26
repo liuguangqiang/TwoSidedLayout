@@ -33,7 +33,7 @@ dependencies {
 TwoSidedLayout must contains only two direct children.
 
 ```
-<com.liuguangqiang.TurnLayout
+<com.liuguangqiang.TwoSidedLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -47,7 +47,7 @@ TwoSidedLayout must contains only two direct children.
             android:layout_width="match_parent"
             android:layout_height="match_parent"></RelativeLayout>
 
-    </com.liuguangqiang.TurnLayout>
+    </com.liuguangqiang.TwoSidedLayout>
 ```
 
 ### Orientation
@@ -58,8 +58,8 @@ HORIZONTAL
 VERTICAL
 ```
 ### Tension and Friction
-TurnLayout is using [Rebound](http://facebook.github.io/rebound/) to drive animations.
-Change tension and friction will influence the animation effects in Rebound. So TurnLayout create a method to change these.
+TwoSidedLayout is using [Rebound](http://facebook.github.io/rebound/) to render animations.
+Change tension and friction will influence the animation effects in Rebound. So TwoSidedLayout create a method to change these.
 
 ```
 public void setTensionAndFriction(double tension, double friction)
