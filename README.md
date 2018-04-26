@@ -1,8 +1,8 @@
-TurnLayout
+TwoSidedLayout
 ===========
 
-TurnLayout is a view that can turn to show the back side.
-This library is using [Rebound](http://facebook.github.io/rebound/) to drive animations.
+TwoSidedLayout is a view that can turn to show the back side.
+This library is using [Rebound](http://facebook.github.io/rebound/) to render animations.
 
 ## Screenshots
 
@@ -15,25 +15,25 @@ This library is using [Rebound](http://facebook.github.io/rebound/) to drive ani
 ### Gradle
 ```
 dependencies {
-   	compile 'com.github.liuguangqiang.turnlayout:library:0.1.0'
+   	compile 'com.liuguangqiang.twosidedlayout:library:1.0.0'
 }
 ```
 
 ### Maven
 ```
 <dependency>
-  	<groupId>com.github.liuguangqiang.turnlayout</groupId>
+  	<groupId>com.liuguangqiang.twosidedlayout</groupId>
   	<artifactId>library</artifactId>
-  	<version>0.1.0</version>
+  	<version>1.0.0</version>
   	<type>aar</type>
 </dependency>
 ```
 
 ### Layout
-TurnLayout must contains only two direct children.
+TwoSidedLayout must contains only two direct children.
 
 ```
-<com.liuguangqiang.turnlayout.widget.TurnLayout
+<com.liuguangqiang.TurnLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -47,7 +47,7 @@ TurnLayout must contains only two direct children.
             android:layout_width="match_parent"
             android:layout_height="match_parent"></RelativeLayout>
 
-    </com.liuguangqiang.turnlayout.widget.TurnLayout>
+    </com.liuguangqiang.TurnLayout>
 ```
 
 ### Orientation

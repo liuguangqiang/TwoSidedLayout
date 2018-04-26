@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.liuguangqiang.turnlayout.widget;
+package com.liuguangqiang;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -27,16 +27,14 @@ import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 
 /**
- * TurnLayout is a view that can turn to show the back side.
+ * TwoSidedLayout is a view that can turn to show the back side.
  * <p/>
  * Created by Eric on 15/4/15.
  */
-public class TurnLayout extends RelativeLayout implements View.OnClickListener {
+public class TwoSidedLayout extends RelativeLayout implements View.OnClickListener {
 
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
-
-    private static final String TAG = "TurnLayout";
 
     private static final int CAMERA_DISTANCE = 8100;
     private static final int ORIGINAL_ROTATION = 0;
@@ -65,11 +63,11 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
         this.turnable = enable;
     }
 
-    public TurnLayout(Context context) {
+    public TwoSidedLayout(Context context) {
         this(context, null);
     }
 
-    public TurnLayout(Context context, AttributeSet attrs) {
+    public TwoSidedLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -117,7 +115,7 @@ public class TurnLayout extends RelativeLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (turnable && v instanceof TurnLayout) {
+        if (turnable && v instanceof TwoSidedLayout) {
             overturn();
         }
     }

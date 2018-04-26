@@ -2,12 +2,11 @@ package com.liuguangqiang.turnlayout.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import com.liuguangqiang.turnlayout.widget.TurnLayout;
-
+import com.liuguangqiang.TwoSidedLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-  private TurnLayout turnLayout;
+  private TwoSidedLayout twoSidedLayout;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void initViews() {
-    turnLayout = findViewById(R.id.turnlayout);
-    turnLayout.setOrientation(TurnLayout.HORIZONTAL);
-    turnLayout.setTensionAndFriction(30, 15);
-    turnLayout.setTurnable(true);
+    twoSidedLayout = findViewById(R.id.turnlayout);
+    twoSidedLayout.setOrientation(TwoSidedLayout.HORIZONTAL);
+    twoSidedLayout.setTensionAndFriction(30, 15);
+    twoSidedLayout.setTurnable(true);
   }
 }
